@@ -179,9 +179,9 @@
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <img id="teaser" width="100%" src="static/images/main_experiment.jpg">
+      <img id="teaser" width="100%" src="static/images/main_result.png">
         <div class="content has-text-justified">
-        <p>Qualitative comparison between our RealCompo and the outstanding text-to-image model Stable Diffusion v1.5, as well as the layout-to-image models, GLIGEN and LMD+. Colored text denotes the advantages of RealCompo in generating results</p>
+        <p>Qualitative comparison between our layout-based RealCompo and the outstanding text-to-image model Stable Diffusion v1.5, as well as the layout-to-image models, GLIGEN and LMD+. Colored text denotes the advantages of RealCompo in generating results</p>
         </div>
     </div>
   </div>
@@ -196,15 +196,16 @@
         <div class="content has-text-justified">
           <p>
             Diffusion models have achieved remarkable advancements in text-to-image generation. However, existing models still 
-            have many difficulties when faced with multiple-object compositional generation. In this paper, we propose a 
-            new <i>training-free</i> and <i>transferred-friendly</i> text-to-image generation framework, 
-            namely <b><i>RealCompo</i></b>, which aims to extract the advantages of text-to-image models and layout-to-image 
-            models to enhance the realism and compositionality of the generated images. Our approach uses LLM as a layout generator 
-            to pre-bind multiple objects and attributes before denoising. In addition, an intuitive and user-friendly balancer 
-            dynamically balances the strengths of the two models in denoising steps, allowing plug-and-play use of any model 
-            without extra training. Extensive experiments show that our RealCompo outperforms state-of-the-art text-to-image 
-            models and layout-to-image models in multiple-object compositional generation and achieves a good balance between 
-            the realism and compositionality of the generated images.
+            have many difficulties when faced with multiple-object compositional generation. In this paper, we 
+            propose <b><i>RealCompo</i></b>, a new <i>training-free</i> and <i>transferred-friendly</i> text-to-image generation 
+            framework, which aims to leverage the respective advantages of text-to-image models and spatial-aware image diffusion 
+            models (e.g., layout, keypoints and segmentation maps) to enhance both realism and compositionality of the generated 
+            images. An intuitive and novel <i>balancer</i> is proposed to dynamically balance the strengths of the two models in 
+            denoising process, allowing plug-and-play use of any model without extra training. Extensive experiments show that 
+            our RealCompo consistently outperforms state-of-the-art text-to-image models and spatial-aware image diffusion models 
+            in multiple-object compositional generation while keeping satisfactory realism and compositionality of the generated 
+            images. Notably, our RealCompo can be seamlessly extended with a wide range of spatial-aware image diffusion models 
+            and stylized diffusion models.
           </p>
         </div>
       </div>
@@ -218,10 +219,10 @@
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Method</h2>
-        <img id="teaser" width="100%" src="static/images/pipeline.jpg">
+        <img id="teaser" width="100%" src="static/images/pipeline-realcompo.png">
         <div class="content has-text-justified">
           <p>
-           We first use LLM to obtain the corresponding layout according to the input text prompt. Next, the balancer dynamically updates the influence by analyzing the cross-attention maps derived from each model's current influence at each denoising step.
+           An overview of RealCompo framework for text-to-image generation. We first use LLMs or transfer function to obtain the corresponding layout. Next, the balancer dynamically updates the influence of two models, which enhances realism by focusing on contours and colors in the fidelity branch, and improves compositionality by manipulating object positions in the spatial-aware branch.
           </p>
         </div>
       </div>
@@ -245,8 +246,8 @@
   <!-- Grounedtext2img. -->
   <div class="columns is-centered">
     <div class="column is-full-width">
-      <h2 class="title is-4">Compared with other T2I and L2I models</h2>
-      <img id="teaser" width="100%" src="static/images/appendix.jpg">
+      <h2 class="title is-4">Layout-based RealCompo</h2>
+      <img id="teaser" width="100%" src="static/images/layout-realcompo.png">
         <div class="content has-text-justified">
         <p>RealCompo achieves satisfactory results in both realism and compositionality in generating images.
         </p>
@@ -255,12 +256,54 @@
   </div>
 
   <br>
+  
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4">Keypoint-based RealCompo</h2>
+      <img id="teaser" width="100%" src="static/images/keypoint-realcompo.png">
+        <div class="content has-text-justified">
+        <p>Extend Realcompo to keypoint-based image generation.
+        </p>
+        </div>
+    </div>
+  </div>
 
+  <br>
+
+    <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4">Keypoint-based RealCompo</h2>
+      <img id="teaser" width="100%" src="static/images/segmentation-realcompo.png">
+        <div class="content has-text-justified">
+        <p>Extend Realcompo to segmentation-based image generation.
+        </p>
+        </div>
+    </div>
+  </div>
+
+  <br>
+
+  <!-- Grounedtext2img. -->
+  <div class="columns is-centered">
+    <div class="column is-full-width">
+      <h2 class="title is-4">Keypoint-based RealCompo</h2>
+      <img id="teaser" width="100%" src="static/images/stylet-realcompo.png">
+        <div class="content has-text-justified">
+        <p>Extend Realcompo to stylized compositional generation.
+        </p>
+        </div>
+    </div>
+  </div>
+
+  <br>
+  
   <!-- counterfactual. -->
   <div class="columns is-centered">
     <div class="column is-full-width">
       <h2 class="title is-4">Generalisation to different models</h2>
-      <img id="teaser" width="100%" src="static/images/ablation.jpg">
+      <img id="teaser" width="100%" src="static/images/ablation-results.png">
         <div class="content has-text-justified">
         <p>Qualitative comparison of RealCompo's generalization to different models: We select two 
           T2I models: Stable Diffusion v1.5, TokenCompose, two L2I models GLIGEN, Layout Guidance
@@ -281,8 +324,8 @@
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{zhang2024realcompo,
-  author    = {Zhang, Xinchen and Yang, Ling and Cai, Yaqi and Yu, Zhaochen and Xie, Jiake and Tian, Ye and Xu, Minkai and Tang, Yong and Yang, Yujiu and Cui, Bin},
-  title     = {RealCompo: Dynamic Equilibrium between Realism and Compositionality Improves Text-to-Image Diffusion Models},
+  author    = {Zhang, Xinchen and Yang, Ling and Cai, Yaqi and Yu, Zhaochen and Wang, Kaini and Xie, Jiake and Tian, Ye and Xu, Minkai and Tang, Yong and Yang, Yujiu and Cui, Bin},
+  title     = {RealCompo: Balancing Realism and Compositionality Improves Text-to-Image Diffusion Models},
   journal   = {arXiv preprint arXiv:2402.12908},
   year      = {2024},
 }</code></pre>
